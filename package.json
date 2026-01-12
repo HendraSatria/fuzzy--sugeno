@@ -1,0 +1,39 @@
+{
+    "name": "fuzzy-tanah-desktop",
+    "version": "1.0.0",
+    "description": "Aplikasi Estimasi Harga Tanah dengan Logika Fuzzy Sugeno - Versi Desktop",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-builder"
+    },
+    "keywords": [
+        "fuzzy",
+        "sugeno",
+        "electron",
+        "tanah"
+    ],
+    "author": "Anda",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^28.0.0",
+        "electron-builder": "^24.9.1"
+    },
+    "build": {
+        "appId": "com.fuzzytanah.app",
+        "productName": "Fuzzy Tanah Estimator",
+        "win": {
+            "target": "nsis",
+            "icon": "icon.png"
+        },
+        "files": [
+            "**/*",
+            "!**/*.php",
+            "!**/*.bak",
+            "!**/*.sql"
+        ],
+        "directories": {
+            "output": "dist"
+        }
+    }
+}
