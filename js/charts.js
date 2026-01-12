@@ -1,6 +1,6 @@
 // --- Chart.js Implementations for Fuzzy Logic Visualization ---
 
-// 1. Grafik Fungsi Keanggotaan (Membership Functions)
+////// 1. Grafik Fungsi Keanggotaan (Membership Functions)
 function renderMembershipChart(canvasId, inputLuas, fuzzyFns) {
     const ctx = document.getElementById(canvasId).getContext('2d');
 
