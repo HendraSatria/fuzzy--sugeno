@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Perhitungan - FuzzyTanah</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        @media (max-width: 640px) {
+            .hide-mobile {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="brand">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-home">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+            FuzzyTanah
+        </a>
+        <a href="index.html" class="btn-primary" style="width: auto; padding: 0.5rem 1rem; font-size: 0.8rem;">Hitung
+            Baru</a>
+    </nav>
+
+    <div class="container">
+        <div style="margin-bottom: 2rem;">
+            <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Riwayat Perhitungan</h1>
+            <p style="color: var(--text-muted);">Data histori estimasi harga yang telah dilakukan (Disimpan di browser).
+            </p>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Detail Tanah</th>
+                        <th class="hide-mobile">Fuzzy (Rp)</th>
+                        <th class="hide-mobile">Faktor Thn</th>
+                        <th>Harga Akhir</th>
+                        <th>Waktu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be populated by JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-top: 2rem; text-align: center;">
+            <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">
+                ⬅ Kembali ke Halaman Utama
+            </a>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
