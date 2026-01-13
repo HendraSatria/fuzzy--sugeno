@@ -120,16 +120,18 @@ function calculateAndDisplay(event) {
     const faktor = 1 + ((tahun - tahun_dasar) * kenaikan);
 
     const harga_akhir = harga_fuzzy * faktor;
+    const kategori = kategoriHarga(harga_akhir);
+
 
     // Save to History
     saveToHistory({
-        luas, lokasi, akses, tahun, harga_fuzzy, faktor_tahun: faktor, harga_akhir, created_at: new Date().toISOString()
+        luas, lokasi, akses, tahun, harga_fuzzy, faktor_tahun: faktor, harga_akhir, kategori, created_at: new Date().toISOString()
     });
 
     // Display Results
     renderResults({
         luas, lokasi, akses, tahun,
-        harga_fuzzy, faktor, harga_akhir,
+        harga_fuzzy, faktor, harga_akhir, kategori,
 
         debug: {
             fuzzifikasi: {
@@ -187,7 +189,10 @@ function renderResults(data) {
     <li>Σ(α × z) = Rp ${formatter.format(data.debug.defuzzifikasi.atas)}</li>
     <li>Σα = ${data.debug.defuzzifikasi.bawah.toFixed(2)}</li>
     <li>Output Fuzzy (Crisp) = Rp ${formatter.format(data.harga_fuzzy)}</li>
+    <li><strong>Kategori Harga:</strong> ${data.kategori}</li>
+
   </ul>
+  
 </div>
 `;
 
@@ -216,11 +221,16 @@ function renderResults(data) {
                     <span class="label">Akses Jalan</span>
                     <span class="value">${data.akses.charAt(0).toUpperCase() + data.akses.slice(1)}</span>
                 </div>
+
             </div>
 
             <div class="price-display">
                 <small style="color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;">Estimasi Harga Final</small>
                 <div class="amount">Rp ${formatter.format(data.harga_akhir)}</div>
+            </div>
+            <div class="detail-item">
+                <span class="label">Kategori Harga</span>
+                <span class="value">${data.kategori}</span>
             </div>
 
             <div style="margin-bottom: 2rem; background: #fffbeb; border-radius: var(--radius-md); padding: 1rem; border: 1px solid #fef3c7;">
@@ -408,4 +418,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (table) {
         loadAndRenderHistory();
     }
+
+    function kategoriHarga(harga) {
+  if (harga <= 75000000) return "Sangat Murah";
+  if (harga <= 125000000) return "Murah";
+  if (harga <= 175000000) return "Sedang";
+  if (harga <= 225000000) return "Mahal";
+  return "Sangat Mahal";
+}
+
 });
