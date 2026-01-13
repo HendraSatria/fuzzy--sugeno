@@ -418,13 +418,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (table) {
         loadAndRenderHistory();
     }
-
-    function kategoriHarga(harga) {
-  if (harga <= 75000000) return "Sangat Murah";
-  if (harga <= 125000000) return "Murah";
-  if (harga <= 175000000) return "Sedang";
-  if (harga <= 225000000) return "Mahal";
-  return "Sangat Mahal";
-}
-
 });
+
+function kategoriHarga(harga) {
+    if (harga <= 75000000) return "Sangat Murah";
+    if (harga <= 125000000) return "Murah";
+    if (harga <= 175000000) return "Sedang";
+    if (harga <= 225000000) return "Mahal";
+    return "Sangat Mahal";
+}

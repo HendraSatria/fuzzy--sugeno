@@ -1,6 +1,93 @@
 // --- Chart.js Implementations for Fuzzy Logic Visualization ---
 
 ////// 1. Grafik Fungsi Keanggotaan (Membership Functions)
+function renderMembershipChart(canvasId, currentLuas, funcs) {
+    const ctx = document.getElementById(canvasId).getContext('2d');
+
+    const labels = [];
+    const dataKecil = [];
+    const dataSedang = [];
+    const dataBesar = [];
+
+    // Range from 50 to 500 for better view
+    for (let x = 50; x <= 500; x += 5) {
+        labels.push(x);
+        dataKecil.push(funcs.kecil(x));
+        dataSedang.push(funcs.sedang(x));
+        dataBesar.push(funcs.besar(x));
+    }
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Kecil',
+                    data: dataKecil,
+                    borderColor: '#ef4444',
+                    backgroundColor: 'transparent',
+                    tension: 0.1,
+                    pointRadius: 0
+                },
+                {
+                    label: 'Sedang',
+                    data: dataSedang,
+                    borderColor: '#f59e0b',
+                    backgroundColor: 'transparent',
+                    tension: 0.1,
+                    pointRadius: 0
+                },
+                {
+                    label: 'Besar',
+                    data: dataBesar,
+                    borderColor: '#10b981',
+                    backgroundColor: 'transparent',
+                    tension: 0.1,
+                    pointRadius: 0
+                },
+                {
+                    label: 'Posisi Tanah',
+                    data: labels.map(x => x === Math.round(currentLuas / 5) * 5 ? 1 : null),
+                    type: 'bar',
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                    barThickness: 2,
+                    categoryPercentage: 1.0,
+                    barPercentage: 1.0
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Kurva Fungsi Keanggotaan (Luas Tanah)'
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Luas Tanah (m²)'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    max: 1.1,
+                    title: {
+                        display: true,
+                        text: 'Derajat Keanggotaan (μ)'
+                    }
+                }
+            }
+        }
+    });
+}
 
 // 2. Grafik Aktivasi Rule (Bar Chart)
 function renderRuleChart(canvasId, rules) {
